@@ -1215,8 +1215,7 @@ form textarea {
   min-height: 350px; }
 
 .find-location {
-  position: relative;
-  margin-bottom: 70px; }
+  position: relative; }
   .find-location input[type="text"] {
     width: 100%;
     padding: 20px 50px 20px 20px;
@@ -1228,6 +1227,26 @@ form textarea {
     right: 5px;
     bottom: 5px;
     padding: 0 40px; }
+
+.find-results {
+    clear: both;
+    display: none; }
+.find-results .menu {
+    background: #262936;
+    list-style: none;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+    overflow: hidden; }
+.find-results .menu a {
+    padding: 15px;
+    display: block;
+    color: white; }
+.find-results .menu .menu-item {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.find-results .menu .menu-item:last-child {
+    border-bottom: none; }
+.find-results .menu .menu-item a:hover {
+    color: #009ad8; }
 
 .forecast-container {
   width: 100%;
