@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Weather\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,17 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
-
-Route::get('/news', function () {
-    return view('news');
-})->name('news');
-
-Route::get('/photos', function () {
-    return view('photos');
-})->name('photos');
+Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::get('/contact', function () {
     return view('contact');
