@@ -7,10 +7,19 @@
 
     <div class="hero" style="background-image: url('{{ url('storage/images/banner.png') }}');">
         <div class="container">
-            <form action="#" class="find-location">
-                <input type="text" placeholder="Find your location...">
-                <input type="submit" value="Find">
+            <form class="find-location" id="find-location">
+                <input type="text" id="find-location-input" placeholder="Find your location...">
+                <input type="submit" id="find-location-btn" value="Find">
             </form>
+            <div class="find-results">
+                <ul class="menu">
+                    <li class="menu-item current-menu-item"><a href="http://weather.docker.localhost:8000">Home</a></li>
+                    <li class="menu-item "><a href="http://weather.docker.localhost:8000/contact">Contact</a></li>
+                    <li class="menu-item "><a href="http://weather.docker.localhost:8000/contact">Contact</a></li>
+                    <li class="menu-item "><a href="http://weather.docker.localhost:8000/contact">Contact</a></li>
+                    <li class="menu-item "><a href="http://weather.docker.localhost:8000/contact">Contact</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="forecast-table">

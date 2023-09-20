@@ -8,7 +8,7 @@
     <main class="main-content">
         <div class="container">
             <div class="breadcrumb">
-                <a href="index.html">Home</a>
+                <a href="{{ route('index') }}">Home</a>
                 <span>Contact</span>
             </div>
         </div>
