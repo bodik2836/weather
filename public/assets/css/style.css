@@ -7,7 +7,6 @@
 /*===========================================
  * Importing CSS Libraries
  *===========================================*/
-
 article,
 aside,
 details,
@@ -1134,6 +1133,10 @@ form textarea {
       display: block;
       color: #bfc1c8; }
 
+.main-content {
+    min-height: calc(100vh - (100vh - 221px));
+}
+
 .main-navigation {
   float: right; }
   .main-navigation .menu-toggle, .main-navigation .menu {
@@ -1340,7 +1343,7 @@ form textarea {
     content: " ";
     width: 7px;
     height: 9px;
-    background: url(storage/images/arrow-down.png);
+    background: url(../../storage/images/arrow-down.png);
     position: absolute;
     right: 10px;
     top: 0;
@@ -1374,7 +1377,7 @@ form textarea {
       top: 0;
       bottom: 0;
       margin: auto;
-      background: url(storage/images/play-button.png); }
+      background: url(../../storage/images/play-button.png); }
     .live-camera .live-camera-cover img {
       display: block;
       width: 100%;
@@ -1393,7 +1396,7 @@ form textarea {
     content: " ";
     width: 12px;
     height: 7px;
-    background: url(storage/images/arrow.png);
+    background: url(../../storage/images/arrow.png);
     display: block; }
   .news .date {
     position: absolute;
@@ -1417,7 +1420,7 @@ form textarea {
       content: " ";
       width: 12px;
       height: 7px;
-      background: url(storage/images/arrow.png);
+      background: url(../../storage/images/arrow.png);
       position: absolute;
       left: 0;
       top: 5px; }
@@ -1427,7 +1430,7 @@ form textarea {
       color: white; }
 
 .arrow-list {
-  list-style-image: url(storage/images/arrow.png);
+  list-style-image: url(../../storage/images/arrow.png);
   list-style-position: inside; }
   .arrow-list li {
     padding: 10px 0;
@@ -1465,7 +1468,7 @@ form textarea {
       vertical-align: middle;
       width: 12px;
       height: 7px;
-      background: url(storage/images/arrow-gray.png) no-repeat;
+      background: url(../../storage/images/arrow-gray.png) no-repeat;
       margin: 0 10px; }
     .breadcrumb a:hover {
       text-decoration: underline; }
@@ -1503,7 +1506,7 @@ form textarea {
     content: " ";
     width: 30px;
     height: 23px;
-    background: url(storage/images/quote.png);
+    background: url(../../storage/images/quote.png);
     position: absolute;
     top: 0;
     left: 0; }
