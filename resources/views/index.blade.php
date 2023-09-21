@@ -13,11 +13,7 @@
             </form>
             <div class="find-results">
                 <ul class="menu">
-                    <li class="menu-item current-menu-item"><a href="http://weather.docker.localhost:8000">Home</a></li>
-                    <li class="menu-item "><a href="http://weather.docker.localhost:8000/contact">Contact</a></li>
-                    <li class="menu-item "><a href="http://weather.docker.localhost:8000/contact">Contact</a></li>
-                    <li class="menu-item "><a href="http://weather.docker.localhost:8000/contact">Contact</a></li>
-                    <li class="menu-item "><a href="http://weather.docker.localhost:8000/contact">Contact</a></li>
+{{--                    <li class="menu-item"><a href="#">Item</a></li>--}}
                 </ul>
             </div>
         </div>
