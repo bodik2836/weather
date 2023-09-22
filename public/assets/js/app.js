@@ -1,40 +1,36 @@
 (function($, document, window){
 
 	$(document).ready(function(){
+        let inputField = $("#find-location-input");
+        let findLocationBtn = $("#find-location-btn");
+        let forecastContainer = $(".forecast-container");
+        let findResults = $(".find-results");
+
         $("#find-location").submit(function(e){
             e.preventDefault();
-            let inputField = $("#find-location-input");
-            let findLocationBtn = $("#find-location-btn");
-            let forecastContainer = $(".forecast-container");
-            let findResults = $(".find-results");
             inputField.focus();
+
+            if (!inputField.val()) {
+                return false;
+            }
+
             findResults.children("ul.menu").children("li.menu-item").remove();
 
-            inputField.focusout(() => {
-                forecastContainer.css('margin-top', '-150px');
-                inputField.css('border-radius', '30px');
-                findLocationBtn.css('border-radius', '30px');
-                findResults.children("ul.menu").children("li.menu-item").remove();
-                // findResults.css('display', 'none');
-            });
-
+            // inputField.focusout(() => {
+            //     clearFindResults();
+            // });
 
             let geoParams = {
-                q: inputField.val(),
-                lang: "ua",
-                limit: 5,
-                appid: ""
+                location: inputField.val(),
             };
             $.ajax({
-                url: 'https://api.openweathermap.org/geo/1.0/direct',
+                url: 'api/v1/geo',
                 method: 'get',             /* Метод запроса (post или get) */
                 dataType: 'json',          /* Тип данных в ответе (xml, json, script, html). */
                 data: geoParams,     /* Данные передаваемые в массиве */
                 success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
-                    forecastContainer.css('margin-top', '10px');
-                    inputField.css('border-radius', '30px 30px 0 0');
-                    findLocationBtn.css('border-radius', '0 25px 0 0');
-                    findResults.css('display', 'block');
+                    showFindResults();
+                    console.log(findResults.children('ul.menu').children('li.menu-item a'));
 
                     let el = document.createElement('li');
                     el.className = 'menu-item';
@@ -74,6 +70,12 @@
             });
         });
 
+        findResults.children('ul.menu').children('li.menu-item').children('a').click(function (e) {
+            e.preventDefault();
+            clearFindResults();
+            console.log('sdf');
+        });
+
 		// Cloning main navigation for mobile menu
 		$(".mobile-navigation").append($(".main-navigation .menu").clone());
 
@@ -99,6 +101,21 @@
 				}
 			});
 		}
+
+        // FUNCTIONS
+        function clearFindResults() {
+            forecastContainer.css('margin-top', '-150px');
+            inputField.css('border-radius', '30px');
+            findLocationBtn.css('border-radius', '30px');
+            findResults.children("ul.menu").children("li.menu-item").remove();
+        }
+
+        function showFindResults() {
+            forecastContainer.css('margin-top', '10px');
+            inputField.css('border-radius', '30px 30px 0 0');
+            findLocationBtn.css('border-radius', '0 25px 0 0');
+            findResults.css('display', 'block');
+        }
 	});
 
 	$(window).load(function(){
