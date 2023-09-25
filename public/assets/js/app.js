@@ -6,6 +6,14 @@
         let forecastContainer = $(".forecast-container");
         let findResults = $(".find-results");
 
+        inputField.focusout(() => {
+            if (!inputField.val()) {
+                clearFindResults();
+            }
+        });
+
+
+
         $("#find-location").submit(function(e){
             e.preventDefault();
             inputField.focus();
@@ -14,11 +22,9 @@
                 return false;
             }
 
-            findResults.children("ul.menu").children("li.menu-item").remove();
 
-            // inputField.focusout(() => {
-            //     clearFindResults();
-            // });
+            // findResults.children("ul.menu").remove();
+            // findResults.children("ul.menu").children("li.menu-item").remove();
 
             let geoParams = {
                 location: inputField.val(),
@@ -30,7 +36,7 @@
                 data: geoParams,     /* Данные передаваемые в массиве */
                 success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
                     showFindResults();
-                    console.log(findResults.children('ul.menu').children('li.menu-item a'));
+                    console.log(findResults.children('ul.menu').children('li.menu-item'));
 
                     let el = document.createElement('li');
                     el.className = 'menu-item';
@@ -47,6 +53,11 @@
 
 
                     findResults.children('ul.menu').append(el);
+
+                    findResults.children("ul.menu").children("li.menu-item").children("a").on("click", (e) => {
+                        e.preventDefault();
+                        alert('rrr');
+                    });
 
                     console.log(data); /* В переменной data содержится ответ от index.php. */
                 }
