@@ -58,7 +58,6 @@ class GeoController extends Controller
                 'units' => 'metric',
             ]
         ]);
-//        dd(json_decode($response->getBody()->getContents()));
 
         return response($response->getBody()->getContents(), $response->getStatusCode());
     }

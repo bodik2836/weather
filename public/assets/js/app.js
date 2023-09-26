@@ -12,10 +12,9 @@
             }
         });
 
-
-
         $("#find-location").submit(function(e){
             e.preventDefault();
+            clearFindResults();
             inputField.focus();
 
             if (!inputField.val()) {
@@ -23,20 +22,16 @@
             }
 
 
-            // findResults.children("ul.menu").remove();
-            // findResults.children("ul.menu").children("li.menu-item").remove();
-
             let geoParams = {
                 location: inputField.val(),
             };
             $.ajax({
                 url: 'api/v1/geo',
-                method: 'get',             /* Метод запроса (post или get) */
-                dataType: 'json',          /* Тип данных в ответе (xml, json, script, html). */
-                data: geoParams,     /* Данные передаваемые в массиве */
-                success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
+                method: 'get',
+                dataType: 'json',
+                data: geoParams,
+                success: function(data){
                     showFindResults();
-                    console.log(findResults.children('ul.menu').children('li.menu-item'));
 
                     let el = document.createElement('li');
                     el.className = 'menu-item';
@@ -45,47 +40,24 @@
                         (element) => {
                             let el_a = document.createElement('a');
                             el_a.href = '#';
+                            el_a.setAttribute('data-lat', element.lat);
+                            el_a.setAttribute('data-lon', element.lon);
+                            el_a.setAttribute('data-city', element.name);
                             el_a.innerText = element.name + ', ' + element.state + ', ' + element.country;
 
                             el.append(el_a);
                         }
                     );
 
-
                     findResults.children('ul.menu').append(el);
 
-                    findResults.children("ul.menu").children("li.menu-item").children("a").on("click", (e) => {
-                        e.preventDefault();
-                        alert('rrr');
-                    });
+                    searchByCoordinates();
 
-                    console.log(data); /* В переменной data содержится ответ от index.php. */
-                }
-            });
-
-            let weatherParams = {
-                lat: "50.759115",
-                lon: "25.342491",
-                units: "metric",
-                lang: "ua",
-                appid: "",
-            };
-            $.ajax({
-                url: 'https://api.openweathermap.org/data/2.5/weather',
-                method: 'get',             /* Метод запроса (post или get) */
-                dataType: 'json',          /* Тип данных в ответе (xml, json, script, html). */
-                data: weatherParams,     /* Данные передаваемые в массиве */
-                success: function(data){   /* функция которая будет выполнена после успешного запроса.  */
-                    console.log(data); /* В переменной data содержится ответ от index.php. */
+                    console.log(data);
                 }
             });
         });
 
-        findResults.children('ul.menu').children('li.menu-item').children('a').click(function (e) {
-            e.preventDefault();
-            clearFindResults();
-            console.log('sdf');
-        });
 
 		// Cloning main navigation for mobile menu
 		$(".mobile-navigation").append($(".main-navigation .menu").clone());
@@ -114,6 +86,28 @@
 		}
 
         // FUNCTIONS
+        function searchByCoordinates() {
+            findResults.children("ul.menu").children("li.menu-item").children("a").on("click", (e) => {
+                e.preventDefault();
+                let el = $(e.target);
+
+                let weatherParams = {
+                    lat: el.data('lat'),
+                    lon: el.data('lon'),
+                };
+                console.log(weatherParams);
+                $.ajax({
+                    url: 'api/v1/weather',
+                    method: 'get',
+                    dataType: 'json',
+                    data: weatherParams,
+                    success: function(data){
+                        console.log(data);
+                    }
+                });
+            });
+        }
+
         function clearFindResults() {
             forecastContainer.css('margin-top', '-150px');
             inputField.css('border-radius', '30px');
