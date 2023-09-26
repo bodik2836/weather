@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Geocoding\GeoController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('geo', [GeoController::class, 'geo']);
+Route::get('weather', [GeoController::class, 'weather']);
