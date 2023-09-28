@@ -86,6 +86,14 @@
 		}
 
         // FUNCTIONS
+        function updateTodayForecast(data) {
+            let date = new Date(data.dt);
+
+            let todayEl = $(".forecast-container").children(".today.forecast");
+            todayEl.children(".forecast-header").children(".day").text(date.toLocaleDateString('default', {weekday: 'long'})).css('textTransform', 'capitalize');
+            todayEl.children(".forecast-header").children(".date").text(date.toLocaleDateString('default', {day: '2-digit', month: "long"})).css('textTransform', 'capitalize');
+        }
+
         function searchByCoordinates() {
             findResults.children("ul.menu").children("li.menu-item").children("a").on("click", (e) => {
                 e.preventDefault();
@@ -102,6 +110,9 @@
                     dataType: 'json',
                     data: weatherParams,
                     success: function(data){
+                        data.city = el.data('city');
+                        data.dt = data.dt * 1000;
+                        updateTodayForecast(data);
                         console.log(data);
                     }
                 });
