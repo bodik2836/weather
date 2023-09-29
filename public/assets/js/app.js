@@ -6,7 +6,7 @@
         let forecastContainer = $(".forecast-container");
         let findResults = $(".find-results");
 
-        inputField.focusout(() => {
+        inputField.on("input", () => {
             if (!inputField.val()) {
                 clearFindResults();
             }
@@ -67,24 +67,6 @@
 			$(".mobile-navigation").slideToggle();
 		});
 
-		var map = $(".map");
-		var latitude = map.data("latitude");
-		var longitude = map.data("longitude");
-		if (map.length) {
-			map.gmap3({
-				map:{
-					options:{
-						center: [latitude,longitude],
-						zoom: 15,
-						scrollwheel: false
-					}
-				},
-				marker:{
-					latLng: [latitude,longitude],
-				}
-			});
-		}
-
         // FUNCTIONS
         function updateTodayForecast(data) {
             let date = new Date(data.dt);
@@ -92,11 +74,17 @@
             let todayEl = $(".forecast-container").children(".today.forecast");
             todayEl.children(".forecast-header").children(".day").text(date.toLocaleDateString('default', {weekday: 'long'})).css('textTransform', 'capitalize');
             todayEl.children(".forecast-header").children(".date").text(date.toLocaleDateString('default', {day: '2-digit', month: "long"})).css('textTransform', 'capitalize');
+            todayEl.children(".forecast-content").children(".location").text(data.city);
+            todayEl.children(".forecast-content").children(".degree").children(".num").html(Math.round(data.main.temp) + "<sup>o</sup>" + "C");
+            $("#today-humidity").html('<img src="storage/images/icon-umberella.png" alt="umbrella">' + data.main.humidity + "%");
+            $("#today-wind-speed").html('<img src="storage/images/icon-wind.png" alt="wind">' + Math.ceil(data.wind.speed) + " м/с");
+            $("#today-wind-direct").html('<img src="storage/images/icon-compass.png" alt="compass">' + data.wind.deg);
         }
 
         function searchByCoordinates() {
             findResults.children("ul.menu").children("li.menu-item").children("a").on("click", (e) => {
                 e.preventDefault();
+                clearFindResults();
                 let el = $(e.target);
 
                 let weatherParams = {
