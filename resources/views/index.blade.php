@@ -23,20 +23,20 @@
             <div class="forecast-container">
                 <div class="today forecast">
                     <div class="forecast-header">
-                        <div class="day">Monday</div>
-                        <div class="date">6 Oct</div>
+                        <div class="day">--</div>
+                        <div class="date">--</div>
                     </div> <!-- .forecast-header -->
                     <div class="forecast-content">
-                        <div class="location">New York</div>
+                        <div class="location">--</div>
                         <div class="degree">
-                            <div class="num">23<sup>o</sup>C</div>
+                            <div class="num">--<sup>o</sup>C</div>
                             <div class="forecast-icon">
                                 <img src="storage/images/icons/icon-1.svg" alt="" width=90>
                             </div>
                         </div>
-                        <span><img src="storage/images/icon-umberella.png" alt="">20%</span>
-                        <span><img src="storage/images/icon-wind.png" alt="">18km/h</span>
-                        <span><img src="storage/images/icon-compass.png" alt="">East</span>
+                        <span id="today-humidity"><img src="storage/images/icon-umberella.png" alt="umbrella">--%</span>
+                        <span id="today-wind-speed"><img src="storage/images/icon-wind.png" alt="wind">-- м/c</span>
+                        <span id="today-wind-direct"><img src="storage/images/icon-compass.png" alt="compass">--</span>
                     </div>
                 </div>
                 <div class="forecast">
@@ -82,30 +82,6 @@
                     <div class="forecast-content">
                         <div class="forecast-icon">
                             <img src="storage/images/icons/icon-12.svg" alt="" width=48>
-                        </div>
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
-                    </div>
-                </div>
-                <div class="forecast">
-                    <div class="forecast-header">
-                        <div class="day">Saturday</div>
-                    </div> <!-- .forecast-header -->
-                    <div class="forecast-content">
-                        <div class="forecast-icon">
-                            <img src="storage/images/icons/icon-13.svg" alt="" width=48>
-                        </div>
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
-                    </div>
-                </div>
-                <div class="forecast">
-                    <div class="forecast-header">
-                        <div class="day">Sunday</div>
-                    </div> <!-- .forecast-header -->
-                    <div class="forecast-content">
-                        <div class="forecast-icon">
-                            <img src="storage/images/icons/icon-14.svg" alt="" width=48>
                         </div>
                         <div class="degree">23<sup>o</sup>C</div>
                         <small>18<sup>o</sup></small>
