@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
 
-    <title> @yield('title') </title>
+    <title> @yield('title') - Погода у Волинській області</title>
     <link type="image/png" sizes="32x32" rel="icon" href="{{ asset('favicon.png') }}">
 
     <!-- Loading third party fonts -->

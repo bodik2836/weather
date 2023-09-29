@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Home')
+@section('title', 'Головна')
 @section('index-active', 'current-menu-item')
 
 @section('content')
@@ -8,8 +8,8 @@
     <div class="hero" style="background-image: url('{{ url('storage/images/banner.png') }}');">
         <div class="container">
             <form class="find-location" id="find-location">
-                <input type="text" id="find-location-input" placeholder="Find your location...">
-                <input type="submit" id="find-location-btn" value="Find">
+                <input type="text" id="find-location-input" placeholder="Населений пункт...">
+                <input type="submit" id="find-location-btn" value="Пошук">
             </form>
             <div class="find-results">
                 <ul class="menu">

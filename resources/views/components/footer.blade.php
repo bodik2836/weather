@@ -3,13 +3,13 @@
             <div class="row">
                 <div class="col-12">
                     <form action="#" class="subscribe-form">
-                        <input type="text" placeholder="Enter your email to subscribe...">
-                        <input type="submit" value="Subscribe">
+                        <input type="text" placeholder="Введи свій email...">
+                        <input type="submit" value="Підписатися">
                     </form>
                 </div>
             </div>
 
-            <p class="colophon">Copyright {{ date('Y') }} Weather. All rights reserved</p>
+            <p class="colophon">{{ date('Y') }}. Всі права захищено.</p>
 
         </div>
     </footer> <!-- .site-footer -->

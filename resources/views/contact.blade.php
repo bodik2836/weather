@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Contact')
+@section('title', 'Зв\'язок')
 @section('contact-active', 'current-menu-item')
 
 @section('content')

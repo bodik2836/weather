@@ -3,8 +3,8 @@
             <a href="{{ route('index') }}" class="branding">
                 <img src="{{ url('storage/images/logo.png') }}" alt="" class="logo">
                 <div class="logo-type">
-                    <h1 class="site-title">Weather</h1>
-                    <small class="site-description">Don't give up</small>
+                    <h1 class="site-title">Погода у Волинській області</h1>
+                    <small class="site-description">Нехай проблеми та незгоди не роблять вам в житті погоди.</small>
                 </div>
             </a>
 
@@ -12,8 +12,8 @@
             <div class="main-navigation">
                 <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
                 <ul class="menu">
-                    <li class="menu-item @yield('index-active')"><a href="{{ route('index') }}">Home</a></li>
-                    <li class="menu-item @yield('contact-active')"><a href="{{ route('contact') }}">Contact</a></li>
+                    <li class="menu-item @yield('index-active')"><a href="{{ route('index') }}">Головна</a></li>
+                    <li class="menu-item @yield('contact-active')"><a href="{{ route('contact') }}">Зв'язок</a></li>
                 </ul> <!-- .menu -->
             </div> <!-- .main-navigation -->
 
