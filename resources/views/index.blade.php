@@ -34,9 +34,9 @@
                                 <img src="storage/images/icons/icon-1.svg" alt="" width=90>
                             </div>
                         </div>
-                        <span id="today-humidity"><img src="storage/images/icon-umberella.png" alt="umbrella">--%</span>
-                        <span id="today-wind-speed"><img src="storage/images/icon-wind.png" alt="wind">-- м/c</span>
-                        <span id="today-wind-direct"><img src="storage/images/icon-compass.png" alt="compass">--</span>
+                        <span id="today-humidity" title="Вологість"><img src="storage/images/icon-umberella.png" alt="umbrella">--%</span>
+                        <span id="today-wind-speed" title="Пориви вітру"><img src="storage/images/icon-wind.png" alt="wind">-- м/c</span>
+                        <span id="today-wind-direct" title="Напрямок вітру"><img src="storage/images/icon-compass.png" alt="compass">--</span>
                     </div>
                 </div>
                 <div class="forecast">

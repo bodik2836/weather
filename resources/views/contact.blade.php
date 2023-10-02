@@ -8,8 +8,8 @@
     <main class="main-content">
         <div class="container">
             <div class="breadcrumb">
-                <a href="{{ route('index') }}">Home</a>
-                <span>Contact</span>
+                <a href="{{ route('index') }}">Головна</a>
+                <span>Зв'язок</span>
             </div>
         </div>
 
@@ -21,30 +21,24 @@
                         <div class="contact-info">
                             <address>
                                 <img src="storage/images/icon-marker.png" alt="">
-                                <p>Company Name INC. <br>
-                                    2803 Avenue Street, Los Angeles</p>
+                                <p>Луцьк, Україна </p>
                             </address>
-
-                            <a href="#"><img src="storage/images/icon-phone.png" alt="">+1 800 314 235</a>
-                            <a href="#"><img src="storage/images/icon-envelope.png" alt="">contact@companyname.com</a>
+                            <a href="mailto:weather@toptools.fun"><img src="storage/images/icon-envelope.png" alt="">weather@toptools.fun</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-md-offset-1">
-                    <h2 class="section-title">Contact us</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi consectetur inventore ducimus, facilis, numquam id soluta omnis eius recusandae nesciunt vero repellat harum cum. Nisi facilis odit hic, ipsum sed!</p>
-                    <form action="#" class="contact-form">
+                    <h2 class="section-title">Зв'яжіться з нами</h2>
+                    <p>Ця форма дозволяє відвідувачам сайту звертатися до сервісу, поділитися своїми спостереженнями або отримати інформацію. Після відправлення повідомлення користувач очікує на відповідь.</p>
+                    <form class="contact-form">
                         <div class="row">
-                            <div class="col-md-6"><input type="text" placeholder="Your name..."></div>
-                            <div class="col-md-6"><input type="text" placeholder="Email Addresss..."></div>
+                            <div class="col-md-6"><input type="text" placeholder="Ім'я Прізвище"></div>
+                            <div class="col-md-6"><input type="text" placeholder="Електронна пошта"></div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6"><input type="text" placeholder="Company name..."></div>
-                            <div class="col-md-6"><input type="text" placeholder="Website..."></div>
-                        </div>
-                        <textarea name="" placeholder="Message..."></textarea>
+                        <textarea name="" rows="10" placeholder="Пропозиції, зауваження, повідомлення :)"></textarea>
                         <div class="text-right">
                             <input type="submit" placeholder="Send message">
+                            <div>Функціонал в розробці. Форма зв'язку поки не працює.</div>
                         </div>
                     </form>
 
