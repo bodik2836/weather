@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Geocoding\GeoController;
+use App\Http\Controllers\Api\OpenWeatherMap\GeocodingController;
+use App\Http\Controllers\Api\OpenWeatherMap\WeatherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('geo', [GeoController::class, 'geo']);
-Route::get('weather', [GeoController::class, 'weather']);
+Route::get('geo', [GeocodingController::class, 'geo']);
+Route::get('weather', [WeatherController::class, 'weather']);
