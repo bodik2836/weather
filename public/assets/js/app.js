@@ -31,25 +31,7 @@
                 dataType: 'json',
                 data: geoParams,
                 success: function(data){
-                    showFindResults();
-
-                    let el = document.createElement('li');
-                    el.className = 'menu-item';
-
-                    data.forEach(
-                        (element) => {
-                            let el_a = document.createElement('a');
-                            el_a.href = '#';
-                            el_a.setAttribute('data-lat', element.lat);
-                            el_a.setAttribute('data-lon', element.lon);
-                            el_a.setAttribute('data-city', element.name);
-                            el_a.innerText = element.name + ', ' + element.state + ', ' + element.country;
-
-                            el.append(el_a);
-                        }
-                    );
-
-                    findResults.children('ul.menu').append(el);
+                    showFindResults(data);
 
                     searchByCoordinates();
 
@@ -68,6 +50,28 @@
 		});
 
         // FUNCTIONS
+        function windDirection(deg) {
+            if (deg >= 0 && deg < 30 || deg >= 330 && deg < 360) {
+                return 'Пн';
+            } else if (deg >= 30 && deg < 60) {
+                return 'ПнCx';
+            } else if (deg >= 60 && deg < 120) {
+                return 'Cx';
+            } else if (deg >= 120 && deg < 150) {
+                return 'ПдCx';
+            } else if (deg >= 150 && deg < 210) {
+                return 'Пд';
+            } else if (deg >= 210 && deg < 240) {
+                return 'ПдЗх';
+            } else if (deg >= 240 && deg < 300) {
+                return 'Зх';
+            } else if (deg >= 300 && deg < 330) {
+                return 'ПнЗx';
+            }
+
+            return '--';
+        }
+
         function updateTodayForecast(data) {
             let date = new Date(data.dt);
 
@@ -78,7 +82,7 @@
             todayEl.children(".forecast-content").children(".degree").children(".num").html(Math.round(data.main.temp) + "<sup>o</sup>" + "C");
             $("#today-humidity").html('<img src="storage/images/icon-umberella.png" alt="umbrella">' + data.main.humidity + "%");
             $("#today-wind-speed").html('<img src="storage/images/icon-wind.png" alt="wind">' + Math.ceil(data.wind.speed) + " м/с");
-            $("#today-wind-direct").html('<img src="storage/images/icon-compass.png" alt="compass">' + data.wind.deg);
+            $("#today-wind-direct").html('<img src="storage/images/icon-compass.png" alt="compass">' + windDirection(data.wind.deg));
         }
 
         function searchByCoordinates() {
@@ -114,11 +118,37 @@
             findResults.children("ul.menu").children("li.menu-item").remove();
         }
 
-        function showFindResults() {
+        function showFindResults(data) {
             forecastContainer.css('margin-top', '10px');
             inputField.css('border-radius', '30px 30px 0 0');
             findLocationBtn.css('border-radius', '0 25px 0 0');
             findResults.css('display', 'block');
+
+            let el = document.createElement('li');
+            el.className = 'menu-item';
+
+            if (data.length === 0) {
+                let el_div = document.createElement('div');
+                el_div.innerText = 'Нічого не знайдено';
+                el_div.style.padding = '10px';
+
+                el.append(el_div);
+            }
+
+            data.forEach(
+                (element) => {
+                    let el_a = document.createElement('a');
+                    el_a.href = '#';
+                    el_a.setAttribute('data-lat', element.lat);
+                    el_a.setAttribute('data-lon', element.lon);
+                    el_a.setAttribute('data-city', element.name);
+                    el_a.innerText = element.name + ', ' + element.state + ', ' + element.country;
+
+                    el.append(el_a);
+                }
+            );
+
+            findResults.children('ul.menu').append(el);
         }
 	});
 
