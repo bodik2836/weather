@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Weather;
+namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 
