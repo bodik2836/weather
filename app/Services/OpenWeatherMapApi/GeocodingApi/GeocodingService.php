@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Services\GeocodingApi;
+namespace App\Services\OpenWeatherMapApi\GeocodingApi;
 
+use App\Services\OpenWeatherMapApi\OpenWeatherMap;
 use GuzzleHttp\Client;
 use Illuminate\Http\Response;
 
-class GeocodingService
+class GeocodingService extends OpenWeatherMap
 {
-    protected string $geoUri = 'https://api.openweathermap.org/geo/1.0/direct';
+    protected string $geoUri = self::API_URIs['geocoding'];
 
     /**
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function coordinatesByLocation($data): Response
+    public function coordinatesByLocation(array $data): Response
     {
         $client = new Client(['base_uri' => $this->geoUri]);
         $response = $client->request('GET', '', [
@@ -22,7 +23,7 @@ class GeocodingService
             'query' => [
                 'q' => $data['location'],
                 'limit' => $data['limit'] ?? 5,
-                'appid' => env('WEATHER_API_KEY')
+                'appid' => $this->getWeatherApiKey()
             ]
         ]);
 
