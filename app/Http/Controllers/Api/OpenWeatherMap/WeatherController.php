@@ -26,4 +26,17 @@ class WeatherController extends Controller
 
         return $this->weatherApi->currentWeather($data);
     }
+
+    /**
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function forecast(Request $request): Response
+    {
+        $data = $request->validate([
+            'lat' => 'required|string|max:255',
+            'lon' => 'required|string|max:255',
+        ]);
+
+        return $this->weatherApi->forecast($data);
+    }
 }

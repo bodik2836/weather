@@ -17,3 +17,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('geo', [GeocodingController::class, 'geo']);
 Route::get('weather', [WeatherController::class, 'weather']);
+Route::get('forecast', [WeatherController::class, 'forecast']);
