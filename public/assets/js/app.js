@@ -32,10 +32,7 @@
                 data: geoParams,
                 success: function(data){
                     showFindResults(data);
-
                     searchByCoordinates();
-
-                    console.log(data);
                 }
             });
         });
@@ -85,6 +82,34 @@
             $("#today-wind-direct").html('<img src="storage/images/icon-compass.png" alt="compass">' + windDirection(data.wind.deg));
         }
 
+        function updateForecast(data) {
+            // let date = new Date(data.dt);
+
+            let weatherByDays = [];
+            data.list.forEach(
+                (element) => {
+                    let date = new Date((element.dt - data.city.timezone) * 1000);
+                    let dayIndex = date.toLocaleDateString('default', {day: 'numeric', month: 'numeric', year: 'numeric'});
+
+                    if (!weatherByDays[dayIndex]) {
+                        weatherByDays[dayIndex] = [];
+                        weatherByDays[dayIndex].info = [];
+                        weatherByDays[dayIndex].info.tmp_min = element.main.temp;
+                        weatherByDays[dayIndex].info.tmp_max = element.main.temp;
+                    }
+                    weatherByDays[dayIndex].push(element);
+
+                    if (weatherByDays[dayIndex].info.tmp_min > element.main.temp) {
+                        weatherByDays[dayIndex].info.tmp_min = element.main.temp;
+                    }
+                    if (weatherByDays[dayIndex].info.tmp_max < element.main.temp) {
+                        weatherByDays[dayIndex].info.tmp_max = element.main.temp;
+                    }
+                }
+            );
+            console.log(weatherByDays);
+        }
+
         function searchByCoordinates() {
             findResults.children("ul.menu").children("li.menu-item").children("a").on("click", (e) => {
                 e.preventDefault();
@@ -95,7 +120,7 @@
                     lat: el.data('lat'),
                     lon: el.data('lon'),
                 };
-                console.log(weatherParams);
+
                 $.ajax({
                     url: 'api/v1/weather',
                     method: 'get',
@@ -105,6 +130,16 @@
                         data.city = el.data('city');
                         data.dt = data.dt * 1000;
                         updateTodayForecast(data);
+                        console.log(data);
+                    }
+                });
+                $.ajax({
+                    url: 'api/v1/forecast',
+                    method: 'get',
+                    dataType: 'json',
+                    data: weatherParams,
+                    success: function(data){
+                        updateForecast(data);
                         console.log(data);
                     }
                 });
