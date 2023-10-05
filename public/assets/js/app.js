@@ -77,13 +77,14 @@
             todayEl.children(".forecast-header").children(".date").text(date.toLocaleDateString('default', {day: '2-digit', month: "long"})).css('textTransform', 'capitalize');
             todayEl.children(".forecast-content").children(".location").text(data.city);
             todayEl.children(".forecast-content").children(".degree").children(".num").html(Math.round(data.main.temp) + "<sup>o</sup>" + "C");
+            let url = 'https://openweathermap.org/img/wn/' + data.weather[0].icon + '.png';
+            todayEl.children(".forecast-content").children(".degree").children(".forecast-icon").html('<img src="' + url + '" alt="' + data.weather[0].main + '" width=60>');
             $("#today-humidity").html('<img src="storage/images/icon-umberella.png" alt="umbrella">' + data.main.humidity + "%");
             $("#today-wind-speed").html('<img src="storage/images/icon-wind.png" alt="wind">' + Math.ceil(data.wind.speed) + " м/с");
             $("#today-wind-direct").html('<img src="storage/images/icon-compass.png" alt="compass">' + windDirection(data.wind.deg));
         }
 
         function updateForecast(data) {
-            // let date = new Date(data.dt);
 
             let weatherByDays = [];
             data.list.forEach(
@@ -107,7 +108,21 @@
                     }
                 }
             );
-            console.log(weatherByDays);
+
+            for (let key in weatherByDays) {
+                if (weatherByDays[key].length < 8) {
+                    continue;
+                }
+                console.log(weatherByDays[key]);
+            }
+
+            let forecast = $(".forecast-container").children(".forecast");
+            console.log(forecast);
+            // todayEl.children(".forecast-header").children(".day").text(date.toLocaleDateString('default', {weekday: 'long'})).css('textTransform', 'capitalize');
+            // todayEl.children(".forecast-header").children(".date").text(date.toLocaleDateString('default', {day: '2-digit', month: "long"})).css('textTransform', 'capitalize');
+            // todayEl.children(".forecast-content").children(".location").text(data.city);
+            // todayEl.children(".forecast-content").children(".degree").children(".num").html(Math.round(data.main.temp) + "<sup>o</sup>" + "C");
+
         }
 
         function searchByCoordinates() {
