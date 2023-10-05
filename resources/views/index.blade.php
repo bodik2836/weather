@@ -31,7 +31,7 @@
                         <div class="degree">
                             <div class="num">--<sup>o</sup>C</div>
                             <div class="forecast-icon">
-                                <img src="storage/images/icons/icon-1.svg" alt="" width=90>
+                                <img src="https://openweathermap.org/img/wn/02d.png" alt="Sun" width=70>
                             </div>
                         </div>
                         <span id="today-humidity" title="Вологість"><img src="storage/images/icon-umberella.png" alt="umbrella">--%</span>
