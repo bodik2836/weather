@@ -31,7 +31,7 @@
                         <div class="degree">
                             <div class="num">--<sup>o</sup>C</div>
                             <div class="forecast-icon">
-                                <img src="https://openweathermap.org/img/wn/02d.png" alt="Sun" width=70>
+                                <img src="https://openweathermap.org/img/wn/02d.png" alt="Clouds" width=70>
                             </div>
                         </div>
                         <span id="today-humidity" title="Вологість"><img src="storage/images/icon-umberella.png" alt="umbrella">--%</span>
@@ -41,50 +41,50 @@
                 </div>
                 <div class="forecast">
                     <div class="forecast-header">
-                        <div class="day">Tuesday</div>
+                        <div class="day">--</div>
                     </div> <!-- .forecast-header -->
                     <div class="forecast-content">
                         <div class="forecast-icon">
-                            <img src="storage/images/icons/icon-3.svg" alt="" width=48>
+                            <img src="https://openweathermap.org/img/wn/02d.png" alt="Clouds" width=48>
                         </div>
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
+                        <div class="degree">-- <sup>o</sup>C</div>
+                        <small>-- <sup>o</sup></small>
                     </div>
                 </div>
                 <div class="forecast">
                     <div class="forecast-header">
-                        <div class="day">Wednesday</div>
+                        <div class="day">--</div>
                     </div> <!-- .forecast-header -->
                     <div class="forecast-content">
                         <div class="forecast-icon">
-                            <img src="storage/images/icons/icon-5.svg" alt="" width=48>
+                            <img src="https://openweathermap.org/img/wn/02d.png" alt="Clouds" width=48>
                         </div>
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
+                        <div class="degree">-- <sup>o</sup>C</div>
+                        <small>-- <sup>o</sup></small>
                     </div>
                 </div>
                 <div class="forecast">
                     <div class="forecast-header">
-                        <div class="day">Thursday</div>
+                        <div class="day">--</div>
                     </div> <!-- .forecast-header -->
                     <div class="forecast-content">
                         <div class="forecast-icon">
-                            <img src="storage/images/icons/icon-7.svg" alt="" width=48>
+                            <img src="https://openweathermap.org/img/wn/02d.png" alt="Clouds" width=48>
                         </div>
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
+                        <div class="degree">-- <sup>o</sup>C</div>
+                        <small>-- <sup>o</sup></small>
                     </div>
                 </div>
                 <div class="forecast">
                     <div class="forecast-header">
-                        <div class="day">Friday</div>
+                        <div class="day">--</div>
                     </div> <!-- .forecast-header -->
                     <div class="forecast-content">
                         <div class="forecast-icon">
-                            <img src="storage/images/icons/icon-12.svg" alt="" width=48>
+                            <img src="https://openweathermap.org/img/wn/02d.png" alt="Clouds" width=48>
                         </div>
-                        <div class="degree">23<sup>o</sup>C</div>
-                        <small>18<sup>o</sup></small>
+                        <div class="degree">-- <sup>o</sup>C</div>
+                        <small>-- <sup>o</sup></small>
                     </div>
                 </div>
             </div>
