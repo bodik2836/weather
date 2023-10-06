@@ -1,6 +1,8 @@
 (function($, document, window){
 
 	$(document).ready(function(){
+        defaultSearch();
+
         let inputField = $("#find-location-input");
         let findLocationBtn = $("#find-location-btn");
         let forecastContainer = $(".forecast-container");
@@ -109,20 +111,20 @@
                 }
             );
 
+            let forecast = $(".forecast-container").children(".forecast").not('.today');
+            let index = 0;
             for (let key in weatherByDays) {
                 if (weatherByDays[key].length < 8) {
                     continue;
                 }
-                console.log(weatherByDays[key]);
+                $(forecast[index]).children(".forecast-header").children(".day").text(key);
+                $(forecast[index]).children(".forecast-content").children(".degree").html(Math.round(weatherByDays[key].info.tmp_max) + "<sup>o</sup>" + "C");
+                $(forecast[index]).children(".forecast-content").children("small").html(Math.round(weatherByDays[key].info.tmp_min) + "<sup>o</sup>");
+                let icon_uri = 'https://openweathermap.org/img/wn/' + weatherByDays[key][4].weather[0].icon + '.png';
+                $(forecast[index]).children(".forecast-content").children(".forecast-icon").html('<img src="' + icon_uri + '" alt="' + weatherByDays[key][4].weather[0].main + '" width=48>');
+
+                index++;
             }
-
-            let forecast = $(".forecast-container").children(".forecast");
-            console.log(forecast);
-            // todayEl.children(".forecast-header").children(".day").text(date.toLocaleDateString('default', {weekday: 'long'})).css('textTransform', 'capitalize');
-            // todayEl.children(".forecast-header").children(".date").text(date.toLocaleDateString('default', {day: '2-digit', month: "long"})).css('textTransform', 'capitalize');
-            // todayEl.children(".forecast-content").children(".location").text(data.city);
-            // todayEl.children(".forecast-content").children(".degree").children(".num").html(Math.round(data.main.temp) + "<sup>o</sup>" + "C");
-
         }
 
         function searchByCoordinates() {
@@ -145,7 +147,6 @@
                         data.city = el.data('city');
                         data.dt = data.dt * 1000;
                         updateTodayForecast(data);
-                        console.log(data);
                     }
                 });
                 $.ajax({
@@ -155,7 +156,6 @@
                     data: weatherParams,
                     success: function(data){
                         updateForecast(data);
-                        console.log(data);
                     }
                 });
             });
@@ -199,6 +199,35 @@
             );
 
             findResults.children('ul.menu').append(el);
+        }
+
+        function defaultSearch() {
+            let weatherParams = {
+                lat: '50.7450733',
+                lon: '25.320078',
+                city: 'Луцьк',
+            };
+
+            $.ajax({
+                url: 'api/v1/weather',
+                method: 'get',
+                dataType: 'json',
+                data: weatherParams,
+                success: function(data){
+                    data.city = weatherParams.city;
+                    data.dt = data.dt * 1000;
+                    updateTodayForecast(data);
+                }
+            });
+            $.ajax({
+                url: 'api/v1/forecast',
+                method: 'get',
+                dataType: 'json',
+                data: weatherParams,
+                success: function(data){
+                    updateForecast(data);
+                }
+            });
         }
 	});
 
