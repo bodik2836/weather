@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\OpenWeatherMap\GeocodingController;
 use App\Http\Controllers\Api\OpenWeatherMap\WeatherController;
+use App\Http\Controllers\Api\SubscriberController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('geo', [GeocodingController::class, 'geo']);
 Route::get('weather', [WeatherController::class, 'weather']);
 Route::get('forecast', [WeatherController::class, 'forecast']);
+
+Route::apiResource('subscribers', SubscriberController::class)->only(['store']);
