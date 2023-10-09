@@ -2,6 +2,7 @@
 
 	$(document).ready(function(){
         defaultSearch();
+        subscribeForm();
 
         let inputField = $("#find-location-input");
         let findLocationBtn = $("#find-location-btn");
@@ -49,6 +50,35 @@
 		});
 
         // FUNCTIONS
+        function subscribeForm() {
+            $("#subscribe-form").submit(function(e){
+                e.preventDefault();
+
+                let subscribeFormInput = $('#subscribe-form-input');
+
+                if (!subscribeFormInput.val()) {
+                    return false;
+                }
+
+                let params = {
+                    email: subscribeFormInput.val(),
+                };
+                $.ajax({
+                    url: 'api/v1/subscribers',
+                    method: 'post',
+                    dataType: 'json',
+                    data: params,
+                    success: function(data){
+                        $.notify('Ви успішно підписалися на розсилку!', 'success');
+                        subscribeFormInput.val('');
+                    },
+                    error: function (error) {
+                        $.notify(error.responseJSON.message, 'error');
+                    }
+                });
+            });
+        }
+
         function windDirection(deg) {
             if (deg >= 0 && deg < 30 || deg >= 330 && deg < 360) {
                 return 'Пн';

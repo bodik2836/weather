@@ -2,8 +2,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <form action="#" class="subscribe-form">
-                        <input type="text" placeholder="Введи свій email...">
+                    <form class="subscribe-form" id="subscribe-form">
+                        <input type="text" id="subscribe-form-input" placeholder="Введи свій email...">
                         <input type="submit" value="Підписатися">
                     </form>
                 </div>
