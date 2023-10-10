@@ -3,16 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Subscriber\SubscriberStoreRequest;
 use App\Models\Subscriber;
-use Illuminate\Http\Request;
 
 class SubscriberController extends Controller
 {
-    public function store(Request $request)
+    public function store(SubscriberStoreRequest $request)
     {
-        $data = $request->validate([
-            'email' => 'required|email|max:255|unique:subscribers,email'
-        ]);
+        $data = $request->validated();
 
         $subscriber = Subscriber::query()->create($data);
 

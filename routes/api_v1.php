@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ContactFormController;
 use App\Http\Controllers\Api\OpenWeatherMap\GeocodingController;
 use App\Http\Controllers\Api\OpenWeatherMap\WeatherController;
 use App\Http\Controllers\Api\SubscriberController;
@@ -21,3 +22,4 @@ Route::get('weather', [WeatherController::class, 'weather']);
 Route::get('forecast', [WeatherController::class, 'forecast']);
 
 Route::apiResource('subscribers', SubscriberController::class)->only(['store']);
+Route::post('contact-form', [ContactFormController::class, 'store']);
