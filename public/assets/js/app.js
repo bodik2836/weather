@@ -3,6 +3,7 @@
 	$(document).ready(function(){
         defaultSearch();
         subscribeForm();
+        contactForm();
 
         let inputField = $("#find-location-input");
         let findLocationBtn = $("#find-location-btn");
@@ -50,6 +51,28 @@
 		});
 
         // FUNCTIONS
+        function contactForm() {
+            $("#contact-form").submit(function(e){
+                e.preventDefault();
+
+                let formData = Object.fromEntries(new FormData(e.target).entries());
+
+                $.ajax({
+                    url: 'api/v1/contact-form',
+                    method: 'post',
+                    dataType: 'json',
+                    data: formData,
+                    success: function(data){
+                        $.notify('Повідомлння успішно доставлене!', 'success');
+                        $("#contact-form").trigger('reset');
+                    },
+                    error: function (error) {
+                        $.notify(error.responseJSON.message, 'error');
+                    }
+                });
+            });
+        }
+
         function subscribeForm() {
             $("#subscribe-form").submit(function(e){
                 e.preventDefault();
@@ -217,11 +240,15 @@
 
             data.forEach(
                 (element) => {
+                    if (element.country !== 'UA') {
+                        return;
+                    }
+
                     let el_a = document.createElement('a');
                     el_a.href = '#';
                     el_a.setAttribute('data-lat', element.lat);
                     el_a.setAttribute('data-lon', element.lon);
-                    el_a.setAttribute('data-city', element.name);
+                    el_a.setAttribute('data-city', element.local_names.uk);
                     el_a.innerText = element.name + ', ' + element.state + ', ' + element.country;
 
                     el.append(el_a);
