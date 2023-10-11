@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ContactFormController;
+use App\Http\Controllers\Api\GRecaptcha\GRecaptchaController;
 use App\Http\Controllers\Api\OpenWeatherMap\GeocodingController;
 use App\Http\Controllers\Api\OpenWeatherMap\WeatherController;
 use App\Http\Controllers\Api\SubscriberController;
@@ -16,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::post('verify', [GRecaptchaController::class, 'verify']);
 
 Route::get('geo', [GeocodingController::class, 'geo']);
 Route::get('weather', [WeatherController::class, 'weather']);
