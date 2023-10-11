@@ -77,7 +77,12 @@
             $("#subscribe-form").submit(function(e){
                 e.preventDefault();
 
+                if (!grecaptchaVerify('subscription')) {
+                    return false;
+                }
+
                 let subscribeFormInput = $('#subscribe-form-input');
+                console.log(subscribeFormInput.val());
 
                 if (!subscribeFormInput.val()) {
                     return false;
@@ -285,6 +290,27 @@
                     updateForecast(data);
                 }
             });
+        }
+
+        function grecaptchaVerify(action) {
+            let isVerify = false;
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute('sitekey', {action: action}).then(function(token) {
+                    $.ajax({
+                        url: 'api/v1/verify',
+                        method: 'post',
+                        dataType: 'json',
+                        data: { response: token },
+                        success: function(data) {
+                            isVerify = data.success;
+                            console.log(isVerify);
+                        }
+                    });
+                });
+            });
+
+            return isVerify;
         }
 	});
 
