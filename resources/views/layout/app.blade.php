@@ -28,7 +28,7 @@
 
 </div>
 
-<script src="https://www.google.com/recaptcha/api.js?render=sitekey"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=6LdUsI4oAAAAAAF_6hrZsQPPKOribJZifRUCB9yf"></script>
 <script src="{{ asset('assets/js/min/jquery-1.11.1.min.js') }}"></script>
 <script src="{{ asset('assets/js/min/notify.min.js') }}"></script>
 <script src="{{ asset('assets/js/plugins.js') }}"></script>

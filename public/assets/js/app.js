@@ -25,7 +25,6 @@
                 return false;
             }
 
-
             let geoParams = {
                 location: inputField.val(),
             };
@@ -57,18 +56,32 @@
 
                 let formData = Object.fromEntries(new FormData(e.target).entries());
 
-                $.ajax({
-                    url: 'api/v1/contact-form',
-                    method: 'post',
-                    dataType: 'json',
-                    data: formData,
-                    success: function(data){
-                        $.notify('Повідомлння успішно доставлене!', 'success');
-                        $("#contact-form").trigger('reset');
-                    },
-                    error: function (error) {
-                        $.notify(error.responseJSON.message, 'error');
-                    }
+                grecaptcha.ready(function(){
+                    grecaptcha.execute('6LdUsI4oAAAAAAF_6hrZsQPPKOribJZifRUCB9yf', {action: 'contactForm'}).then(function(token) {
+                        $.ajax({
+                            url: 'api/v1/verify',
+                            method: 'post',
+                            dataType: 'json',
+                            data: { response: token },
+                            success: function(data) {
+                                if (data.success) {
+                                    $.ajax({
+                                        url: 'api/v1/contact-form',
+                                        method: 'post',
+                                        dataType: 'json',
+                                        data: formData,
+                                        success: function(data){
+                                            $.notify('Повідомлння успішно доставлене!', 'success');
+                                            $("#contact-form").trigger('reset');
+                                        },
+                                        error: function (error) {
+                                            $.notify(error.responseJSON.message, 'error');
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    });
                 });
             });
         }
@@ -77,12 +90,7 @@
             $("#subscribe-form").submit(function(e){
                 e.preventDefault();
 
-                if (!grecaptchaVerify('subscription')) {
-                    return false;
-                }
-
                 let subscribeFormInput = $('#subscribe-form-input');
-                console.log(subscribeFormInput.val());
 
                 if (!subscribeFormInput.val()) {
                     return false;
@@ -91,18 +99,33 @@
                 let params = {
                     email: subscribeFormInput.val(),
                 };
-                $.ajax({
-                    url: 'api/v1/subscribers',
-                    method: 'post',
-                    dataType: 'json',
-                    data: params,
-                    success: function(data){
-                        $.notify('Ви успішно підписалися на розсилку!', 'success');
-                        subscribeFormInput.val('');
-                    },
-                    error: function (error) {
-                        $.notify(error.responseJSON.message, 'error');
-                    }
+
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('6LdUsI4oAAAAAAF_6hrZsQPPKOribJZifRUCB9yf', {action: 'subscription'}).then(function(token) {
+                        $.ajax({
+                            url: 'api/v1/verify',
+                            method: 'post',
+                            dataType: 'json',
+                            data: { response: token },
+                            success: function(data) {
+                                if (data.success) {
+                                    $.ajax({
+                                        url: 'api/v1/subscribers',
+                                        method: 'post',
+                                        dataType: 'json',
+                                        data: params,
+                                        success: function(data){
+                                            $.notify('Ви успішно підписалися на розсилку!', 'success');
+                                            subscribeFormInput.val('');
+                                        },
+                                        error: function (error) {
+                                            $.notify(error.responseJSON.message, 'error');
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    });
                 });
             });
         }
@@ -290,27 +313,6 @@
                     updateForecast(data);
                 }
             });
-        }
-
-        function grecaptchaVerify(action) {
-            let isVerify = false;
-
-            grecaptcha.ready(function() {
-                grecaptcha.execute('sitekey', {action: action}).then(function(token) {
-                    $.ajax({
-                        url: 'api/v1/verify',
-                        method: 'post',
-                        dataType: 'json',
-                        data: { response: token },
-                        success: function(data) {
-                            isVerify = data.success;
-                            console.log(isVerify);
-                        }
-                    });
-                });
-            });
-
-            return isVerify;
         }
 	});
 
