@@ -13,7 +13,7 @@ abstract class OpenWeatherMap
 
     public function __construct()
     {
-        $this->weatherApiKey = env('WEATHER_API_KEY');
+        $this->weatherApiKey = config('app.weather_api_key');
     }
 
     public function getWeatherApiKey(): string

@@ -10,7 +10,7 @@ abstract class GRecaptcha
 
     public function __construct()
     {
-        $this->secretKey = env('RECAPTCHA_SECRET_KEY');
+        $this->secretKey = config('app.recaptcha_secret_key');
     }
 
     public function getSecretKey(): string

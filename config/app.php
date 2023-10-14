@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
+    'weather_api_key' => env('WEATHER_API_KEY'),
+    'recaptcha_site_key' => env('RECAPTCHA_SITE_KEY'),
+    'recaptcha_secret_key' => env('recaptcha_secret_key'),
 
     /*
     |--------------------------------------------------------------------------
