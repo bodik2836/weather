@@ -3,7 +3,7 @@
             <a href="{{ route('index') }}" class="branding">
                 <img src="{{ url('storage/images/logo.png') }}" alt="logo" class="logo">
                 <div class="logo-type">
-                    <h1 class="site-title">Погода у Волинській області</h1>
+                    <h1 class="site-title">Weather</h1>
                     <small class="site-description">Нехай проблеми та незгоди не роблять вам в житті погоди.</small>
                 </div>
             </a>
